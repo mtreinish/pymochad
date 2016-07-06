@@ -1,13 +1,12 @@
-======
-pycmus
-======
-A python library for sending commands to the cmus music player:
+========
+pymochad
+========
+A python library for sending commands to the mochad TCP gateway daemon for
+the X10 CMA15A controller:
 
-https://cmus.github.io/
+https://sourceforge.net/projects/mochad/
 
-It uses the same socket interface as the cmus-remote command.
-
-Complete documentation is here: http://pycmus.readthedocs.io/en/latest/
+Complete documentation is here: http://pymochad.readthedocs.io/en/latest/
 
 Usage
 =====
@@ -15,12 +14,11 @@ Usage
 Using pycmus is pretty straightforward you just need to init a PyCmus object
 and then issue commands to it. For example::
 
-  from pycmus import remote
+  from pymochad import controller
 
-  cmus = remote.PyCmus()
-  print(cmus.status())
+  mochad = remote.PyMochad()
+  print(mochad.send_cmd('st'))
 
-will connect to a running cmus instance (with the socket file in the default
-location) and print the player status.
+will connect to a running mochad instance (running on your localhost) and print the device status.
 
-For a complete API documentation see: :ref:`pycmus_api`.
+For a complete API documentation see: :ref:`pymochad_api`.

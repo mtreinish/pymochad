@@ -56,6 +56,12 @@ class PyMochad(object):
 
 
     def send_cmd(self, cmd):
+        """Send a raw command to mochad
+
+        :param str cmd: The command to send to mochad
+        :return resp: The response from mochad for the issued command
+        :rtype: str
+        """
         self.socket.sendall(six.binary_type(cmd.encod('utf8')))
         resp = _read_response(self)
         return resp
