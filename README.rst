@@ -17,7 +17,7 @@ and then issue commands to it. For example::
   from pymochad import controller
 
   mochad = remote.PyMochad()
-  print(mochad.send_cmd('st'))
+  print(mochad.status())
 
 will connect to a running mochad instance (running on your localhost) and print the device status.
 
