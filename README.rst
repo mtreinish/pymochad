@@ -11,7 +11,7 @@ Complete documentation is here: http://pymochad.readthedocs.io/en/latest/
 Usage
 =====
 
-Using pycmus is pretty straightforward you just need to init a PyCmus object
+Using PyMochad is pretty straightforward you just need to init a PyMochad object
 and then issue commands to it. For example::
 
   from pymochad import controller
