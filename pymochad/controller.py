@@ -58,12 +58,16 @@ class PyMochad(object):
         """Send a raw command to mochad.
 
         :param str cmd: The command to send to mochad
-        :return resp: The response from mochad for the issued command
-        :rtype: str
         """
         self.socket.sendall(six.binary_type(cmd.encod('utf8')))
 
     def read_data(self):
+        """Read data from mochad
+
+        :return data: The data returned over the mochad socket
+        :rtype: str
+        """
+
         total_data = []
         while True:
             try:
@@ -88,4 +92,5 @@ class PyMochad(object):
         :return status: The status of device including RF security devices
         :rtype: str
         """
-        return self.send_cmd('st\n')
+        self.send_cmd('st\n')
+        return read_data()
