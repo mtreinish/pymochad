@@ -62,10 +62,8 @@ class PyMochad(object):
         :rtype: str
         """
         self.socket.sendall(six.binary_type(cmd.encod('utf8')))
-        resp = self._read_response(self)
-        return resp
 
-    def _read_response(self):
+    def read_data(self):
         total_data = []
         while True:
             try:
