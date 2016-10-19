@@ -59,7 +59,7 @@ class PyMochad(object):
 
         :param str cmd: The command to send to mochad
         """
-        self.socket.sendall(six.binary_type(cmd.encod('utf8')))
+        self.socket.sendall(six.binary_type(cmd.encode('utf8')))
 
     def read_data(self):
         """Read data from mochad
@@ -93,4 +93,4 @@ class PyMochad(object):
         :rtype: str
         """
         self.send_cmd('st\n')
-        return read_data()
+        return self.read_data()

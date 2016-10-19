@@ -42,4 +42,4 @@ class Device(object):
         :param str cmd: The command to send to the device
         """
         cmd_str = ' '.join([self.comm_type, self.address, cmd])
-        self.controller.send_cmd(cmd_str)
+        self.controller.send_cmd(cmd_str + '\n')
