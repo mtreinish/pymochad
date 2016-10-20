@@ -44,7 +44,7 @@ class PyMochad(object):
         for addr in socket.getaddrinfo(self.server, self.port):
             af, socktype, proto, cannonname, sa = addr
             try:
-                self.socket = socket.socket(af, socktype, proto)
+                self.socket = socket.socket(af, socket.SOCK_STREAM, proto)
                 self.socket.connect(sa)
             except Exception:
                 continue
