@@ -43,3 +43,13 @@ class Device(object):
         """
         cmd_str = ' '.join([self.comm_type, self.address, cmd])
         self.controller.send_cmd(cmd_str + '\n')
+
+    def get_status(self):
+        """Get the on/off status for the devices
+
+        :returns: Device status
+        :rtype: str
+        """
+        cmd_str = 'getstatus ' + self.address + '\n'
+        self.controller.send_cmd(cmd_str)
+        return self.controller.read_data().lower()
