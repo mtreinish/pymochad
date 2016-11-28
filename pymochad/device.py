@@ -53,3 +53,13 @@ class Device(object):
         cmd_str = 'getstatus ' + self.address + '\n'
         self.controller.send_cmd(cmd_str)
         return self.controller.read_data().lower()
+
+    def get_statussec(self):
+        """Get the on/off status for the X10 Security devices
+
+        :returns: Device status
+        :rtype: str
+        """
+        cmd_str = 'getstatussec ' + self.address + '\n'
+        self.controller.send_cmd(cmd_str)
+        return self.controller.read_data().lower()
