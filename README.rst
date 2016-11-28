@@ -32,7 +32,7 @@ example:
   from pymochad import controller
   from pymochad import device
 
-  mochad = remote.PyMochad()
+  mochad = controller.PyMochad()
   light_switch = device.Device(mochad, 'a1')
   ligh_switch.send_cmd('on')
 
