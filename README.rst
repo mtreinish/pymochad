@@ -32,9 +32,9 @@ example:
   from pymochad import controller
   from pymochad import device
 
-  mochad = remote.PyMochad()
+  mochad = controller.PyMochad()
   light_switch = device.Device(mochad, 'a1')
-  ligh_switch.send_cmd('on')
+  light_switch.send_cmd('on')
 
 will connect to a running a mochad instance and send the *on* command to the
 light switch device at address *a1* on the power line interface.
