@@ -20,6 +20,7 @@ import mock
 from pymochad import controller
 from pymochad.tests import base
 
+
 class TestController(base.TestCase):
 
     @mock.patch('socket.socket')
