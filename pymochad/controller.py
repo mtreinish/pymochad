@@ -54,6 +54,23 @@ class PyMochad(object):
                 "Unable to connect to server %s" % self.server)
         self.socket.setblocking(0)
 
+    def reconnect(self):
+        """Reconnect when mochad server is restarted/lost connection."""
+        if self.socket:
+            self.socket.close()
+        for addr in socket.getaddrinfo(self.server, self.port):
+            af, socktype, proto, cannonname, sa = addr
+            try:
+                self.socket = socket.socket(af, socktype, proto)
+                self.socket.connect(sa)
+            except Exception:
+                continue
+            break
+        else:
+            raise exceptions.ConfigurationError(
+                "Unable to connect to server %s" % self.server)
+        self.socket.setblocking(0)
+        
     def send_cmd(self, cmd):
         """Send a raw command to mochad.
 
