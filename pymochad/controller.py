@@ -26,7 +26,7 @@ from pymochad import exceptions
 LOG = logging.getLogger(__name__)
 
 
-class PyMochad(object):
+class PyMochad:
     """PyMochad controller class
 
     This class is used to create a PyMochad controller object that is used to
@@ -37,10 +37,11 @@ class PyMochad(object):
     :param int port: The port to use for remote connections. If one is not
                      provided it will just use the default port of 1099.
     """
+
     def __init__(self, server=None, port=1099):
-        super(PyMochad, self).__init__()
+        super().__init__()
         self.port = port
-        self.server = server or 'localhost'
+        self.server = server or "localhost"
         self._connect()
 
     def _connect(self):
@@ -54,7 +55,8 @@ class PyMochad(object):
             break
         else:
             raise exceptions.ConfigurationError(
-                "Unable to connect to server %s" % self.server)
+                f"Unable to connect to server {self.server}"
+            )
         self.socket.setblocking(0)
 
     def reconnect(self):
@@ -68,7 +70,7 @@ class PyMochad(object):
 
         :param str cmd: The command to send to mochad
         """
-        self.socket.sendall(six.binary_type(cmd.encode('utf8')))
+        self.socket.sendall(six.binary_type(cmd.encode("utf8")))
 
     def read_data(self):
         """Read data from mochad
@@ -83,9 +85,9 @@ class PyMochad(object):
                 data = self.socket.recv(4096)
                 if not data:
                     break
-                total_data.append(six.text_type(data.decode('utf8')))
-                line_break = six.binary_type('\n'.encode('utf8'))
-                alt_line_break = six.binary_type('\n\r'.encode('utf8'))
+                total_data.append(six.text_type(data.decode("utf8")))
+                line_break = six.binary_type("\n".encode("utf8"))
+                alt_line_break = six.binary_type("\n\r".encode("utf8"))
                 if data.endswith(line_break) or data.endswith(alt_line_break):
                     break
             except socket.error as e:
@@ -94,7 +96,7 @@ class PyMochad(object):
                     continue
                 else:
                     raise
-        return ''.join(total_data)
+        return "".join(total_data)
 
     def status(self):
         """Send a show device status command.
@@ -102,5 +104,5 @@ class PyMochad(object):
         :return status: The status of device including RF security devices
         :rtype: str
         """
-        self.send_cmd('st\n')
+        self.send_cmd("st\n")
         return self.read_data()

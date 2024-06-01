@@ -28,11 +28,12 @@ class Device(object):
                           either pl (for power line) or rf (for radio
                           frequency)
     """
-    def __init__(self, controller, address, comm_type='pl'):
+
+    def __init__(self, controller, address, comm_type="pl"):
         self.controller = controller
         self.address = address
-        if comm_type not in ['pl', 'rf']:
-            msg = 'Mochad only supports a comm_type of pl or rf'
+        if comm_type not in ["pl", "rf"]:
+            msg = "Mochad only supports a comm_type of pl or rf"
             raise TypeError(msg)
         self.comm_type = comm_type
 
@@ -41,8 +42,8 @@ class Device(object):
 
         :param str cmd: The command to send to the device
         """
-        cmd_str = ' '.join([self.comm_type, self.address, cmd])
-        self.controller.send_cmd(cmd_str + '\n')
+        cmd_str = " ".join([self.comm_type, self.address, cmd])
+        self.controller.send_cmd(cmd_str + "\n")
 
     def get_status(self):
         """Get the on/off status for the devices
@@ -50,7 +51,7 @@ class Device(object):
         :returns: Device status
         :rtype: str
         """
-        cmd_str = 'getstatus ' + self.address + '\n'
+        cmd_str = "getstatus " + self.address + "\n"
         self.controller.send_cmd(cmd_str)
         return self.controller.read_data().lower()
 
@@ -60,6 +61,6 @@ class Device(object):
         :returns: Device status
         :rtype: str
         """
-        cmd_str = 'getstatussec ' + self.address + '\n'
+        cmd_str = "getstatussec " + self.address + "\n"
         self.controller.send_cmd(cmd_str)
         return self.controller.read_data().lower()

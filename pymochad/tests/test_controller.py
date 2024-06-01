@@ -23,11 +23,11 @@ from pymochad.tests import base
 
 class TestController(base.TestCase):
 
-    @mock.patch('socket.socket')
+    @mock.patch("socket.socket")
     def test_status(self, socket_mock):
         cont = controller.PyMochad()
-        with mock.patch.object(cont, 'read_data') as read_mock:
-            with mock.patch.object(cont, 'send_cmd') as send_mock:
+        with mock.patch.object(cont, "read_data") as read_mock:
+            with mock.patch.object(cont, "send_cmd") as send_mock:
                 cont.status()
-                send_mock.assert_called_once_with('st\n')
+                send_mock.assert_called_once_with("st\n")
                 read_mock.assert_called_once_with()
