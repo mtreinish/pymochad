@@ -85,7 +85,8 @@ class PyMochad(object):
                     break
                 total_data.append(six.text_type(data.decode('utf8')))
                 line_break = six.binary_type('\n'.encode('utf8'))
-                if data.endswith(line_break):
+                alt_line_break = six.binary_type('\n\r'.encode('utf8'))
+                if data.endswith(line_break) or data.endswith(alt_line_break):
                     break
             except socket.error as e:
                 if e.errno == socket.errno.EWOULDBLOCK:
